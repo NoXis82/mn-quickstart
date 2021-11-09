@@ -19,7 +19,7 @@ class HelloWorldControllerTest {
     @Test
     void helloWorldEndpointContent() {
        var response = client.toBlocking().retrieve("/hello");
-        assertEquals("Hello world!!!", response);
+        assertEquals("Hello from service", response);
     }
 
     @Test
