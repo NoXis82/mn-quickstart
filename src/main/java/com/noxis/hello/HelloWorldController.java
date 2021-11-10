@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 @Controller("/hello")
 public class HelloWorldController {
 
-   private static final Logger LOG = LoggerFactory.getLogger(HelloWorldController.class);
+    private static final Logger LOG = LoggerFactory.getLogger(HelloWorldController.class);
 
     // method one
     // @Inject
@@ -34,6 +34,7 @@ public class HelloWorldController {
 
     @Get(uri = "/config", produces = MediaType.TEXT_PLAIN)
     public String helloConfig() {
+        LOG.debug("Hello from Config Message: {}", helloFromConfig);
         return helloFromConfig;
     }
 }
