@@ -1,5 +1,6 @@
 package com.noxis;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import io.micronaut.http.HttpStatus;
 import io.micronaut.http.client.HttpClient;
 import io.micronaut.http.client.annotation.Client;
@@ -18,7 +19,7 @@ class HelloWorldControllerTest {
 
     @Test
     void helloWorldEndpointContent() {
-       var response = client.toBlocking().retrieve("/hello");
+        var response = client.toBlocking().retrieve("/hello");
         assertEquals("Hello from service", response);
     }
 
@@ -34,5 +35,12 @@ class HelloWorldControllerTest {
         var response = client.toBlocking().exchange("/hello/config", String.class);
         assertEquals("Hello from application.yml", response.getBody().get());
         assertEquals(HttpStatus.OK, response.getStatus());
+    }
+
+    @Test
+    void helloFromTranslationEndpointReturnsContentFromConfigFile() {
+        var response = client.toBlocking().exchange("/hello/translation", JsonNode.class);
+        assertEquals(HttpStatus.OK, response.getStatus());
+        assertEquals("{\"en\":\"Hello World\",\"de\":\"Hallo Welt\"}", response.getBody().get().toString());
     }
 }

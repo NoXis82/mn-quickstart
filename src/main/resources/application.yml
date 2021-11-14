@@ -7,3 +7,6 @@ micronaut:
 hello:
   world:
     message: "Hello from application.yml"
+    translation:
+      de: "Hallo Welt"
+      en: "Hello World"
