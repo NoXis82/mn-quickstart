@@ -21,10 +21,9 @@ class MarketsControllerTest {
 
     @Test
     void returnsListOfMarkets() {
-        var response = client.toBlocking().retrieve("/markets", List.class);
+        final List<LinkedHashMap<String, String>> response = client.toBlocking().retrieve("/markets", List.class);
         assertEquals(7, response.size());
-        final List<LinkedHashMap<String, String>> markets = response;
-        assertThat(markets)
+        assertThat(response)
                 .extracting(entry -> entry.get("value"))
                 .containsExactlyInAnyOrder("AAPL", "AMZN", "FB", "GOOG", "MSFT", "NFLX", "TSLA");
     }
