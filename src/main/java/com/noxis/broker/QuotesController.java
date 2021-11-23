@@ -1,8 +1,10 @@
 package com.noxis.broker;
 
+import com.noxis.broker.error.CustomError;
 import com.noxis.broker.model.Quote;
 import com.noxis.broker.store.InMemoryStore;
 import io.micronaut.http.HttpResponse;
+import io.micronaut.http.HttpStatus;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.PathVariable;
@@ -21,6 +23,15 @@ public class QuotesController {
     @Get("/{symbol}")
     public HttpResponse getQuote(@PathVariable String symbol) {
         Optional<Quote> quote = store.fetchQuote(symbol);
+        if (quote.isEmpty()) {
+            final CustomError notFound = CustomError.builder()
+                    .status(HttpStatus.NOT_FOUND.getCode())
+                    .error(HttpStatus.NOT_FOUND.name())
+                    .message("quote for symbol not found...")
+                    .path("/quotes/" + symbol)
+                    .build();
+            return HttpResponse.notFound(notFound);
+        }
         return HttpResponse.ok(quote.get());
     }
 }
