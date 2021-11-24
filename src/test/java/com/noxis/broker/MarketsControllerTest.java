@@ -1,4 +1,4 @@
-package com.noxis;
+package com.noxis.broker;
 
 import io.micronaut.http.client.HttpClient;
 import io.micronaut.http.client.annotation.Client;

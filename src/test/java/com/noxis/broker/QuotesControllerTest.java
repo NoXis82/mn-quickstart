@@ -1,4 +1,4 @@
-package com.noxis;
+package com.noxis.broker;
 
 import com.noxis.broker.error.CustomError;
 import com.noxis.broker.model.Quote;
