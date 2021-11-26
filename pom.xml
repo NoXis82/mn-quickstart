@@ -10,14 +10,14 @@
   <parent>
     <groupId>io.micronaut</groupId>
     <artifactId>micronaut-parent</artifactId>
-    <version>3.1.1</version>
+    <version>3.2.0</version>
   </parent>
 
   <properties>
     <packaging>jar</packaging>
     <jdk.version>11</jdk.version>
     <release.version>11</release.version>
-    <micronaut.version>3.1.1</micronaut.version>
+    <micronaut.version>3.2.0</micronaut.version>
     <exec.mainClass>com.noxis.Application</exec.mainClass>
     <micronaut.runtime>netty</micronaut.runtime>
   </properties>
@@ -39,6 +39,14 @@
       <groupId>io.micronaut</groupId>
       <artifactId>micronaut-validation</artifactId>
       <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.micronaut.rxjava2</groupId>
+      <artifactId>micronaut-rxjava2</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.micronaut.rxjava2</groupId>
+      <artifactId>micronaut-rxjava2-http-client</artifactId>
     </dependency>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
@@ -88,6 +96,7 @@
     <dependency>
       <groupId>org.assertj</groupId>
       <artifactId>assertj-core</artifactId>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 
@@ -113,8 +122,23 @@
             </path>
             <path>
               <groupId>io.micronaut</groupId>
+              <artifactId>micronaut-inject-java</artifactId>
+              <version>${micronaut.version}</version>
+            </path>
+            <path>
+              <groupId>io.micronaut</groupId>
               <artifactId>micronaut-http-validation</artifactId>
               <version>${micronaut.version}</version>
+            </path>
+            <path>
+              <groupId>io.micronaut</groupId>
+              <artifactId>micronaut-validation</artifactId>
+              <version>${micronaut.version}</version>
+            </path>
+            <path>
+              <groupId>io.micronaut.data</groupId>
+              <artifactId>micronaut-data-processor</artifactId>
+              <version>${micronaut.data.version}</version>
             </path>
           </annotationProcessorPaths>
           <compilerArgs>
