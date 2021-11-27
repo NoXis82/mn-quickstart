@@ -37,10 +37,10 @@ class HelloWorldControllerTest {
         assertEquals(HttpStatus.OK, response.getStatus());
     }
 
-    @Test
-    void helloFromTranslationEndpointReturnsContentFromConfigFile() {
-        var response = client.toBlocking().exchange("/hello/translation", JsonNode.class);
-        assertEquals(HttpStatus.OK, response.getStatus());
-        assertEquals("{\"en\":\"Hello World\",\"de\":\"Hallo Welt\"}", response.getBody().get().toString());
-    }
+//    @Test
+//    void helloFromTranslationEndpointReturnsContentFromConfigFile() {
+//        var response = client.toBlocking().exchange("/hello/translation", JsonNode.class);
+//        assertEquals(HttpStatus.OK, response.getStatus());
+//        assertEquals("{\"en\":\"Hello World\",\"de\":\"Hallo Welt\"}", response.getBody().get().toString());
+//    }
 }
