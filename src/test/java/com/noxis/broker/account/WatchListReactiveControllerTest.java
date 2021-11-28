@@ -1,40 +1,31 @@
 package com.noxis.broker.account;
 
-import static io.micronaut.http.HttpRequest.*;
-import static org.junit.jupiter.api.Assertions.*;
+import com.noxis.broker.model.Symbol;
+import com.noxis.broker.model.WatchList;
+import com.noxis.broker.store.InMemoryAccountStore;
+import io.micronaut.http.HttpResponse;
+import io.micronaut.http.HttpStatus;
+import io.micronaut.http.client.HttpClient;
+import io.micronaut.http.client.annotation.Client;
+import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
+import jakarta.inject.Inject;
+import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import com.noxis.broker.model.Symbol;
-import com.noxis.broker.model.WatchList;
-import com.noxis.broker.store.InMemoryAccountStore;
-import io.micronaut.core.async.subscriber.SingleThreadedBufferingSubscriber;
-import io.micronaut.http.HttpRequest;
-import io.micronaut.http.client.HttpClient;
-import io.reactivex.Observable;
-import io.reactivex.subscribers.DefaultSubscriber;
-import jakarta.inject.Inject;
-
-import org.junit.jupiter.api.Test;
-import org.reactivestreams.Subscription;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-
-import io.micronaut.http.HttpResponse;
-import io.micronaut.http.HttpStatus;
-import io.micronaut.http.client.annotation.Client;
-import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
-import io.reactivex.Single;
+import static io.micronaut.http.HttpRequest.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 @MicronautTest
-class WatchListControllerReactiveTest {
+class WatchListReactiveControllerTest {
 
-    private static final Logger LOG = LoggerFactory.getLogger(WatchListControllerReactiveTest.class);
-    private static final UUID TEST_ACCOUNT_ID = WatchListControllerReactive.ACCOUNT_ID;
+    private static final Logger LOG = LoggerFactory.getLogger(WatchListReactiveControllerTest.class);
+    private static final UUID TEST_ACCOUNT_ID = WatchListReactiveController.ACCOUNT_ID;
 
     @Inject
     @Client("/account/watchlist-reactive")
@@ -45,7 +36,7 @@ class WatchListControllerReactiveTest {
 
     @Test
     void returnsEmptyWatchListForAccount() {
-        final WatchList result =  client.toBlocking().retrieve(GET("/"), WatchList.class);
+        final WatchList result = client.toBlocking().retrieve(GET("/"), WatchList.class);
         assertTrue(result.getSymbols().isEmpty());
         assertTrue(store.getWatchList(TEST_ACCOUNT_ID).getSymbols().isEmpty());
     }

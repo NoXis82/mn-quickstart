@@ -6,6 +6,8 @@ import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.*;
 import io.micronaut.scheduling.TaskExecutors;
 import io.micronaut.scheduling.annotation.ExecuteOn;
+import io.micronaut.security.annotation.Secured;
+import io.micronaut.security.rules.SecurityRule;
 import io.reactivex.Flowable;
 import io.reactivex.Scheduler;
 import io.reactivex.Single;
@@ -17,15 +19,16 @@ import org.slf4j.LoggerFactory;
 import java.util.UUID;
 import java.util.concurrent.ExecutorService;
 
+@Secured(SecurityRule.IS_AUTHENTICATED)
 @Controller("/account/watchlist-reactive")
-public class WatchListControllerReactive {
+public class WatchListReactiveController {
 
-    private static final Logger LOG = LoggerFactory.getLogger(WatchListControllerReactive.class);
+    private static final Logger LOG = LoggerFactory.getLogger(WatchListReactiveController.class);
     private final InMemoryAccountStore store;
     static final UUID ACCOUNT_ID = UUID.randomUUID();
     private final Scheduler scheduler;
 
-    public WatchListControllerReactive(
+    public WatchListReactiveController(
             final InMemoryAccountStore store,
             @Named(TaskExecutors.IO) ExecutorService executorService
     ) {

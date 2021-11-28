@@ -17,6 +17,18 @@ micronaut:
       swagger-ui:
         paths: classpath:META-INF/swagger/views/swagger-ui
         mapping: /swagger-ui/**
+  security:
+    authentication: bearer
+    token:
+      jwt:
+        signatures:
+          secret:
+            generator:
+              secret: changeThisSecretToALongSecureString
+#              secret: ${JWT_SECRET:changeThisSecretToALongSecureString}
+    # With that the static routes are available without auth
+    reject-not-found: false
+
 hello:
   world:
     message: "Hello from application.yml"
