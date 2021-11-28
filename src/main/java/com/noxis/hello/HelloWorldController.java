@@ -46,4 +46,9 @@ public class HelloWorldController {
     public HelloWorldTranslationConfig helloTranslation() {
         return translationConfig;
     }
+
+    @Get(value = "/json")
+    public Greeting json() {
+        return new Greeting();
+    }
 }
