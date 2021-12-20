@@ -52,9 +52,25 @@ flyway:
   datasources:
     default:
       enabled: true
-      clean-schema: false
+      clean-schema: true
       url: ${PG_JDBC_URL:`jdbc:postgresql://127.0.0.1:5432/mn-quickstart`}
       username: ${PG_USERNAME:postgres}
-      password: ${PG_PASSWORD:secret}
+      password: ${PG_PASSWORD}
       schemas: mn
       default-schema: mn
+datasources:
+  default:
+    url: ${PG_JDBC_URL:`jdbc:postgresql://127.0.0.1:5432/mn-quickstart`}
+    username: ${PG_USERNAME:postgres}
+    password: ${PG_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+    schema-genenerate: NONE
+    dialect: POSTGRES
+# micronaut-data-jpa
+jpa:
+  default:
+    packages-to-scan:
+      - "com.noxis.broker.persistence"
+    properties:
+      hibernate:
+        show_sql: false

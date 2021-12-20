@@ -10,8 +10,10 @@
     </appender>
 
     <logger name="com.noxis" level="DEBUG" />
-    <logger name="org.flywaydb.core" level="DEBUG"/>
-    <logger name="io.micronaut.flyway" level="DEBUG"/>
+    <logger name="org.flywaydb.core" level="info"/>
+    <logger name="io.micronaut.flyway" level="info"/>
+    <logger name="io.micronaut.data.query" level="DEBUG" />
+    <logger name="org.hibernate.SQL" level="DEBUG" />
 
     <root level="info">
         <appender-ref ref="STDOUT" />
