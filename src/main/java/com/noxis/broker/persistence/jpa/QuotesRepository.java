@@ -1,6 +1,5 @@
 package com.noxis.broker.persistence.jpa;
 
-import com.noxis.broker.model.Quote;
 import com.noxis.broker.persistence.model.QuoteEntity;
 import com.noxis.broker.persistence.model.SymbolEntity;
 import io.micronaut.data.annotation.Repository;
@@ -16,4 +15,8 @@ public interface QuotesRepository extends CrudRepository<QuoteEntity, Integer> {
     List<QuoteEntity> findAll();
 
     Optional<QuoteEntity> findBySymbol(SymbolEntity entity);
+
+    List<QuoteEntity> listOrderByVolumeDesc();
+
+    List<QuoteEntity> listOrderByVolumeAsc();
 }
