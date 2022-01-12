@@ -3,6 +3,7 @@ package com.noxis.broker;
 import com.noxis.broker.error.CustomError;
 import com.noxis.broker.model.Quote;
 import com.noxis.broker.persistence.jpa.QuotesRepository;
+import com.noxis.broker.persistence.model.QuoteDTO;
 import com.noxis.broker.persistence.model.QuoteEntity;
 import com.noxis.broker.persistence.model.SymbolEntity;
 import com.noxis.broker.store.InMemoryStore;
@@ -79,12 +80,12 @@ public class QuotesController {
     }
 
     @Get("/jpa/ordered/desc")
-    public List<QuoteEntity> orderedDesc() {
+    public List<QuoteDTO> orderedDesc() {
         return quotes.listOrderByVolumeDesc();
     }
 
     @Get("/jpa/ordered/asc")
-    public List<QuoteEntity> orderedAsc() {
+    public List<QuoteDTO> orderedAsc() {
         return quotes.listOrderByVolumeAsc();
     }
 }
